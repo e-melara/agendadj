@@ -1,0 +1,5 @@
+**.DS_Store
+**/__pycache__
+**/secret.json
+agenda-env
+**/migrations/**_initial.py
