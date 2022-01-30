@@ -2,4 +2,4 @@
 **/__pycache__
 **/secret.json
 agenda-env
-**/migrations/**_initial.py
+**/migrations/**
