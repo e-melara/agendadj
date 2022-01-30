@@ -1,10 +1,22 @@
 #
+from tabnanny import verbose
 from model_utils.models import TimeStampedModel
 #
 from django.db import models
 
 
 #
+
+class Hobby(TimeStampedModel):
+    hobby =  models.CharField("Pasatiempos", max_length=50)
+    class Meta:
+        verbose_name = "Hobby"
+        verbose_name_plural = "Hobbies"
+        
+    def __str__(self):
+        return "{}-{}".format(self.id, self.hobby)
+    
+
 class Person(TimeStampedModel):
     """  Modelo para registrar personas de una agenda  """
 
@@ -26,6 +38,8 @@ class Person(TimeStampedModel):
         max_length=20,
         blank=True,
     )
+    
+    hobbies = models.ManyToManyField(Hobby)
 
 
     class Meta:
@@ -34,3 +48,17 @@ class Person(TimeStampedModel):
     
     def __str__(self):
         return "{}-{}".format(self.id, self.full_name)
+
+
+class Reunion(models.Model):
+    persona = models.ForeignKey(Person, on_delete=models.CASCADE)
+    fecha = models.DateField("Fecha")
+    hora = models.TimeField("Hora")
+    asunto = models.CharField("Asunto de la reunion", max_length=100)
+    
+    class Meta:
+        verbose_name = ("Reunion")
+        verbose_name_plural = ("Reunions")
+        
+    def __str__(self):
+        return "{}-{}-{}".format(self.persona.full_name, self.asunto, self.hora)
