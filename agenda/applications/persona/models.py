@@ -10,11 +10,11 @@ class Person(TimeStampedModel):
 
     full_name = models.CharField(
         'Nombres', 
-        max_length=50,
+        max_length=100,
     )
     job = models.CharField(
         'Trabajo', 
-        max_length=30,
+        max_length=50,
         blank=True
     )
     email = models.EmailField(
@@ -23,7 +23,7 @@ class Person(TimeStampedModel):
     )
     phone = models.CharField(
         'telefono',
-        max_length=15,
+        max_length=20,
         blank=True,
     )
 
@@ -33,4 +33,4 @@ class Person(TimeStampedModel):
         verbose_name_plural = 'Personas'
     
     def __str__(self):
-        return self.full_name
+        return "{}-{}".format(self.id, self.full_name)

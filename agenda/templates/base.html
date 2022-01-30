@@ -1,20 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es-MX">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  {% block css %}{% endblock css %}
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+    {% block css %}{% endblock css %}
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+    {% block content %} {% endblock content %} {% block js %}
+    <!-- ========== importando vue y axios [ASI ES MALA PRACTICA]========== -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  {% block content %}
-  {% endblock content %}
+    <!-- ==========seccion codigo vuejs========== -->
+    <script src="{% static 'apps/search.js' %}"></script>
+    <!-- ==========Fin seccion codigo vuejs========== -->
+    {% endblock js %}
 
-  {% block js %}{% endblock js %}
-
-  <script src="{% static 'js/app.js' %}"></script>
-</body>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
 </html>
