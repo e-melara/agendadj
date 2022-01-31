@@ -4,9 +4,6 @@ from model_utils.models import TimeStampedModel
 #
 from django.db import models
 
-
-#
-
 class Hobby(TimeStampedModel):
     hobby =  models.CharField("Pasatiempos", max_length=50)
     class Meta:

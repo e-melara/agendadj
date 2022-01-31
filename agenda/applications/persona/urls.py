@@ -5,6 +5,7 @@ from .views import (
     PersonDeleteView, PersonUpdateView, PersonUpdateRetrieve, PersonApiListView, 
     ReunionApiView
 )
+app_name = 'personas_app'
 
 urlpatterns = [
     # html

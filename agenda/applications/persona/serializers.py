@@ -37,10 +37,10 @@ class PersonaSerializer(serializers.Serializer):
     phone = serializers.CharField()
     
     
-class ReunionSerializer(serializers.ModelSerializer):
-    persona = PersonSerializer()
-    
+class ReunionSerializer(serializers.HyperlinkedModelSerializer):
+  
     fecha_hora = serializers.SerializerMethodField()
+    
     class Meta:
         model = Reunion
         fields = (
@@ -48,9 +48,16 @@ class ReunionSerializer(serializers.ModelSerializer):
             'fecha', 
             'hora',
             'asunto',
-            'persona', 
+            'persona',
             'fecha_hora',
         )
+        
+        extra_kwargs = {
+            'persona': {
+                'view_name' : 'personas_app:api-persona-detail',
+                'lookup_field' : 'pk'
+            }
+        }
         
     def get_fecha_hora(self, object):
         return "{} - {}".format(object.fecha, object.hora)
