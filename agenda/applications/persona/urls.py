@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (
     ListaPersonaListView, PersonListApiView, PersonCreateView, PersonDetailView, 
     PersonDeleteView, PersonUpdateView, PersonUpdateRetrieve, PersonApiListView, 
-    ReunionApiView
+    ReunionApiView, PersonaPaginatorView, ReunionByPersonJob
 )
 app_name = 'personas_app'
 
@@ -22,4 +22,7 @@ urlpatterns = [
     path('api/persona/list/serializer', view=PersonApiListView.as_view(),name='api-list-serializer'),
     # Reunion api view
     path('api/reunion/list', view=ReunionApiView.as_view(),name='api-list-reunion'),
+    # pagination de persona
+    path('api/persona', view=PersonaPaginatorView.as_view(),name='persona-list-pagination'),
+    path('api/reunion/count', view=ReunionByPersonJob.as_view(),name='reunion-count-list'),
 ]

@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, pagination
 
 from .models import Person, Reunion, Hobby
 
@@ -61,3 +61,13 @@ class ReunionSerializer(serializers.HyperlinkedModelSerializer):
         
     def get_fecha_hora(self, object):
         return "{} - {}".format(object.fecha, object.hora)
+    
+
+class PersonaPaginator(pagination.PageNumberPagination):
+    page_size = 5
+    max_page = 100
+
+
+class ReunionCountSerializer(serializers.Serializer):
+    persona__job = serializers.CharField()
+    cantidad = serializers.IntegerField()
